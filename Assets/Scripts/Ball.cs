@@ -10,7 +10,7 @@ public class Ball : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        speed = 5.0f;
+        speed = 7.0f;
         ballRb = GetComponent<Rigidbody>();
         ballRb.AddForce(Random.insideUnitCircle.normalized * speed, ForceMode.Impulse);
     }
@@ -18,6 +18,7 @@ public class Ball : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        // maintain constant velocity
+        ballRb.velocity = speed * (ballRb.velocity.normalized);
     }
 }

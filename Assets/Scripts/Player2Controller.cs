@@ -6,8 +6,8 @@ public class Player2Controller : MonoBehaviour
 {
     private float verticalInput;
     private float horizontalInput;
-    private float speed = 4.0f;
-    private float rotateSpeed = 0.5f;
+    private float speed = 5.0f;
+    private float rotateSpeed = 0.8f;
     private Rigidbody playerRb;
 
     // Start is called before the first frame update
@@ -23,5 +23,11 @@ public class Player2Controller : MonoBehaviour
         horizontalInput = Input.GetAxis("Horizontal2");
         transform.Translate(Vector3.up * Time.deltaTime * speed * verticalInput, Space.World);
         transform.Rotate(Vector3.back, rotateSpeed * horizontalInput);
+
+        // freeze if player doesn't press any key
+        if (verticalInput == 0.0f)
+        {
+            playerRb.velocity = Vector3.zero;
+        }
     }
 }

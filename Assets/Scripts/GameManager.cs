@@ -8,10 +8,13 @@ public class GameManager : MonoBehaviour
     private GameObject difficultiesScreen;
     private GameObject ballSpeedScreen;
 
-    public GameObject player1Paddle;
-    public GameObject player2Paddle;
-    public GameObject computerPaddle;
-    public GameObject ball;
+    public GameObject player1PaddlePrefab;
+    public GameObject player2PaddlePrefab;
+    public GameObject computerPaddlePrefab;
+    public GameObject ballPrefab;
+    public GameObject slowBallPrefab;
+    public GameObject fastBallPrefab;
+    public GameObject superFastBallPrefab;
 
     // Start is called before the first frame update
     void Start()
@@ -48,9 +51,14 @@ public class GameManager : MonoBehaviour
         if(singleplayer)
         {
             difficultiesScreen.SetActive(false);
-            Instantiate(player1Paddle);
-            Instantiate(player2Paddle);
-            Instantiate(ball);
+            Instantiate(player1PaddlePrefab);
+            Instantiate(player2PaddlePrefab);
+            if (difficulty == 1)
+                Instantiate(slowBallPrefab);
+            else if (difficulty == 2)
+                Instantiate(ballPrefab);
+            else
+                Instantiate(fastBallPrefab);
         }
         else
         {

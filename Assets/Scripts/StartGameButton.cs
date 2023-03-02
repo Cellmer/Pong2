@@ -5,8 +5,11 @@ using UnityEngine.UI;
 
 public class StartGameButton : MonoBehaviour
 {
-    public int difficulty;
-    public bool singleplayer;
+    [SerializeField]
+    private int difficulty;
+
+    [SerializeField]
+    private bool singleplayer;
 
     private Button button;
     private GameManager gameManager;

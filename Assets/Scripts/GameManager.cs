@@ -16,7 +16,9 @@ public class GameManager : MonoBehaviour
 
     public GameObject player1PaddlePrefab;
     public GameObject player2PaddlePrefab;
-    public GameObject computerPaddlePrefab;
+    public GameObject computerEasyPaddlePrefab;
+    public GameObject computerMediumPaddlePrefab;
+    public GameObject computerHardPaddlePrefab;
     public GameObject ballPrefab;
     public GameObject slowBallPrefab;
     public GameObject fastBallPrefab;
@@ -75,6 +77,14 @@ public class GameManager : MonoBehaviour
         if(singleplayer)
         {
             difficultiesScreen.SetActive(false);
+            Instantiate(player1PaddlePrefab);
+            if (difficulty == 1)
+                Instantiate(computerEasyPaddlePrefab);
+            else if (difficulty == 2)
+                Instantiate(computerMediumPaddlePrefab);
+            else
+                Instantiate(computerHardPaddlePrefab);
+            ThrowBall();
         }
         else
         {

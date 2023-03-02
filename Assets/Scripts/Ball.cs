@@ -15,8 +15,8 @@ public class Ball : MonoBehaviour
         ballRb = GetComponent<Rigidbody>();
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
 
-        System.Random rnd = new System.Random();
-        ballRb.AddForce(new Vector3(2 * rnd.Next(0, 1) - 1, Random.Range(-2, 2)) * speed, ForceMode.Impulse);
+        System.Random random = new System.Random();
+        ballRb.AddForce(new Vector3(2 * Random.Range(0, 2) - 1, ((float)random.NextDouble() - 0.5f) * 4) * speed, ForceMode.Impulse);
     }
 
     // Update is called once per frame

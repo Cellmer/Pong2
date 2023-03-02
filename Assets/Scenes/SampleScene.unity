@@ -1488,7 +1488,9 @@ MonoBehaviour:
   gameOverText: {fileID: 2136637590}
   player1PaddlePrefab: {fileID: 5966569147517413466, guid: e3196555aad42854f9b516677e485223, type: 3}
   player2PaddlePrefab: {fileID: 3480914992062194851, guid: 5d6b66cf0252d0a4a901be110e54d158, type: 3}
-  computerPaddlePrefab: {fileID: 0}
+  computerEasyPaddlePrefab: {fileID: 856200087925413459, guid: a0f2cec6a0c8f4b449da9fc4a72aa0f4, type: 3}
+  computerMediumPaddlePrefab: {fileID: 0}
+  computerHardPaddlePrefab: {fileID: 0}
   ballPrefab: {fileID: 637054382812585281, guid: a44c98704aa191f4082c354762a36b5a, type: 3}
   slowBallPrefab: {fileID: 3368686728024819447, guid: 40beb3712c8e76247847e49f2d7a236c, type: 3}
   fastBallPrefab: {fileID: 6740950458752954853, guid: 81c69116cced2434b86f3ccc596b9d80, type: 3}
@@ -2117,7 +2119,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 02:00
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

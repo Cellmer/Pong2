@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI leftPlayerScoreText;
     public TextMeshProUGUI rightPlayerScoreText;
     public TextMeshProUGUI gameOverText;
+    public TextMeshProUGUI beforeThrowTimer;
 
     public GameObject player1PaddlePrefab;
     public GameObject player2PaddlePrefab;
@@ -40,6 +41,7 @@ public class GameManager : MonoBehaviour
         gameOverScreen.SetActive(false);
         leftPlayerScoreText.text = "";
         rightPlayerScoreText.text = "";
+        beforeThrowTimer.text = "";
 
         isGameActive = false;
     }
@@ -72,7 +74,7 @@ public class GameManager : MonoBehaviour
         rightPlayerScore = 0;
         leftPlayerScoreText.text = leftPlayerScore.ToString(); 
         rightPlayerScoreText.text = rightPlayerScore.ToString();
-        GameObject.Find("Timer").GetComponent<Timer>().SetTimer(10);
+        GameObject.Find("Timer").GetComponent<Timer>().SetTimer(100);
 
         if(singleplayer)
         {
@@ -84,21 +86,28 @@ public class GameManager : MonoBehaviour
                 Instantiate(computerMediumPaddlePrefab);
             else
                 Instantiate(computerHardPaddlePrefab);
-            ThrowBall();
+            StartCoroutine(ThrowBall(null));
         }
         else
         {
             ballSpeedScreen.SetActive(false);
             Instantiate(player1PaddlePrefab);
             Instantiate(player2PaddlePrefab);
-            ThrowBall();
+            StartCoroutine(ThrowBall(null));
         }
     }
 
-    public void ThrowBall()
+    public IEnumerator ThrowBall(GameObject oldBall)
     {
         if (isGameActive)
         {
+            beforeThrowTimer.text = "3";
+            yield return new WaitForSeconds(1.0f);
+            beforeThrowTimer.text = "2";
+            yield return new WaitForSeconds(1.0f);
+            beforeThrowTimer.text = "1";
+            yield return new WaitForSeconds(1.0f);
+            beforeThrowTimer.text = "";
             if (difficulty == 1)
                 Instantiate(slowBallPrefab);
             else if (difficulty == 2)
@@ -106,6 +115,9 @@ public class GameManager : MonoBehaviour
             else
                 Instantiate(fastBallPrefab);
         }
+
+        if (oldBall != null)
+            Destroy(oldBall);
     }
 
     public void UpdateLeftPlayerScore()
@@ -123,6 +135,7 @@ public class GameManager : MonoBehaviour
     public void EndGame()
     {
         gameOverScreen.SetActive(true);
+        beforeThrowTimer.text = "";
         isGameActive = false;
         if (leftPlayerScore == rightPlayerScore)
         {

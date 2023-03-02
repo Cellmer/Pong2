@@ -30,15 +30,13 @@ public class Ball : MonoBehaviour
     {
         if(other.CompareTag("left bound"))
         {
-            Destroy(gameObject);
             gameManager.UpdateRightPlayerScore();
-            gameManager.ThrowBall();
+            StartCoroutine(gameManager.ThrowBall(gameObject));
         }
         else if(other.CompareTag("right bound"))
         {
-            Destroy(gameObject);
             gameManager.UpdateLeftPlayerScore();
-            gameManager.ThrowBall();
+            StartCoroutine(gameManager.ThrowBall(gameObject));
         }
     }
 

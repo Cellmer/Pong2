@@ -19,15 +19,18 @@ public class PlayerComputerHardController : MonoBehaviour
     void Update()
     {
         GameObject ball = GameObject.FindGameObjectWithTag("ball");
-        if (ball.transform.position.y > gameObject.transform.position.y)
+        if (ball)
         {
-            transform.Translate(Vector3.up * Time.deltaTime * speed, Space.World);
-            transform.Rotate(Vector3.back, rotateSpeed);
-        }
-        else
-        {
-            transform.Translate(Vector3.down * Time.deltaTime * speed, Space.World);
-            transform.Rotate(Vector3.forward, rotateSpeed);
+            if (ball.transform.position.y > gameObject.transform.position.y)
+            {
+                transform.Translate(Vector3.up * Time.deltaTime * speed, Space.World);
+                transform.Rotate(Vector3.back, rotateSpeed);
+            }
+            else
+            {
+                transform.Translate(Vector3.down * Time.deltaTime * speed, Space.World);
+                transform.Rotate(Vector3.forward, rotateSpeed);
+            }
         }
     }
 }

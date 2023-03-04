@@ -11,13 +11,14 @@ public class PlayerComputerMediumController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        speed = 3.0f;
-        rotateSpeed = 0.1f;
+
     }
 
     // Update is called once per frame
     void Update()
     {
+        speed = gameObject.GetComponent<Speed>().speed;
+        rotateSpeed = gameObject.GetComponent<Speed>().rotateSpeed;
         GameObject ball = GameObject.FindGameObjectWithTag("ball");
         if (ball.transform.position.y > gameObject.transform.position.y)
         {

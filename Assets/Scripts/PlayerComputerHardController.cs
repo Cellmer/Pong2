@@ -11,15 +11,16 @@ public class PlayerComputerHardController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        speed = 4.0f;
-        rotateSpeed = 0.1f;
+        
     }
 
     // Update is called once per frame
     void Update()
     {
+        speed = gameObject.GetComponent<Speed>().speed;
+        rotateSpeed = gameObject.GetComponent<Speed>().rotateSpeed;
         GameObject ball = GameObject.FindGameObjectWithTag("ball");
-        if (ball)
+        if (ball && isInBounds(ball))
         {
             if (ball.transform.position.y > gameObject.transform.position.y)
             {
@@ -32,5 +33,12 @@ public class PlayerComputerHardController : MonoBehaviour
                 transform.Rotate(Vector3.forward, rotateSpeed);
             }
         }
+    }
+
+    bool isInBounds(GameObject ball)
+    {
+        if (ball.transform.position.y >= 6.0f || ball.transform.position.y <= -6.0f || ball.transform.position.x < -12.0f || ball.transform.position.x > 12.0f)
+            return false;
+        return true;
     }
 }

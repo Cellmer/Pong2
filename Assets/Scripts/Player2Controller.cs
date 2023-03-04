@@ -6,9 +6,10 @@ public class Player2Controller : MonoBehaviour
 {
     private float verticalInput;
     private float horizontalInput;
-    private float speed = 5.0f;
-    private float rotateSpeed = 0.8f;
     private Rigidbody playerRb;
+
+    private float speed;
+    private float rotateSpeed;
 
     // Start is called before the first frame update
     void Start()
@@ -19,6 +20,8 @@ public class Player2Controller : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        speed = gameObject.GetComponent<Speed>().speed;
+        rotateSpeed = gameObject.GetComponent<Speed>().rotateSpeed;
         verticalInput = Input.GetAxis("Vertical2");
         horizontalInput = Input.GetAxis("Horizontal2");
         transform.Translate(Vector3.up * Time.deltaTime * speed * verticalInput, Space.World);

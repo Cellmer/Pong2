@@ -14,9 +14,11 @@ GameObject:
   - component: {fileID: 5459352659157645758}
   - component: {fileID: 8350001149579001502}
   - component: {fileID: 9076044741696741778}
+  - component: {fileID: -7072759210774251021}
+  - component: {fileID: 5999347269648120165}
   m_Layer: 0
   m_Name: PlayerComputerEasy
-  m_TagString: Untagged
+  m_TagString: left paddle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -127,3 +129,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e11950a24a62c7f4e87f57b73369c8ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-7072759210774251021
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 856200087925413459}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7472101daf9b2684e80c753c51d76b1f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 2
+  rotateSpeed: 0.1
+--- !u!114 &5999347269648120165
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 856200087925413459}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d0575678ccb76c4cb2bc1b4b2550f10, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hasFastBallPowerup: 0
+  hasLongPaddlePowerup: 0
+  hasSlowPaddlePowerup: 0
+  standardMaterial: {fileID: 2100000, guid: d1f13e593381cb74f9cc67e084b64c41, type: 2}
+  fastBallMaterial: {fileID: 2100000, guid: eff9615c06284da438f474700326b126, type: 2}
+  longPaddleMaterial: {fileID: 2100000, guid: c18d9947cbe99654bbbfba12a77e7c7d, type: 2}
+  slowPaddleMaterial: {fileID: 2100000, guid: b57e3060f308d534cb3a038205ffd58e, type: 2}

@@ -8,6 +8,10 @@ public class Ball : MonoBehaviour
     private float speed;
     private Rigidbody ballRb;
     private GameManager gameManager;
+    private bool hasPowerup = false;
+
+    public Material standardMaterial;
+    public Material powerupMaterial;
 
     // Start is called before the first frame update
     void Start()
@@ -38,6 +42,32 @@ public class Ball : MonoBehaviour
             gameManager.UpdateLeftPlayerScore();
             StartCoroutine(gameManager.ThrowBall(gameObject));
         }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (hasPowerup)
+            return;
+
+        if(collision.gameObject.CompareTag("left paddle") || collision.gameObject.CompareTag("right paddle"))
+        {
+            if(collision.gameObject.GetComponent<PowerupsHandler>().hasFastBallPowerup)
+            {
+                StartCoroutine(ApplyPowerup());
+            }
+        }
+    }
+
+    IEnumerator ApplyPowerup()
+    {
+        hasPowerup = true;
+        speed *= 2.0f;
+        gameObject.GetComponent<MeshRenderer>().material = powerupMaterial;
+        yield return new WaitForSeconds(10.0f);
+
+        speed /= 2.0f;
+        gameObject.GetComponent<MeshRenderer>().material = standardMaterial;
+        hasPowerup = false;
     }
 
 }

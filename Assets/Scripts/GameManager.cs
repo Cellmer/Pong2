@@ -24,6 +24,7 @@ public class GameManager : MonoBehaviour
     public GameObject slowBallPrefab;
     public GameObject fastBallPrefab;
     public GameObject superFastBallPrefab;
+    public List<GameObject> powerups;
 
     private int difficulty;
     private bool singleplayer;
@@ -76,6 +77,7 @@ public class GameManager : MonoBehaviour
         rightPlayerScoreText.text = rightPlayerScore.ToString();
         GameObject.Find("Timer").GetComponent<Timer>().SetTimer(100);
 
+
         if(singleplayer)
         {
             difficultiesScreen.SetActive(false);
@@ -95,6 +97,8 @@ public class GameManager : MonoBehaviour
             Instantiate(player2PaddlePrefab);
             StartCoroutine(ThrowBall(null));
         }
+
+        StartCoroutine(SpawnPowerups());
     }
 
     public IEnumerator ThrowBall(GameObject oldBall)
@@ -171,5 +175,16 @@ public class GameManager : MonoBehaviour
     public void RestartGame()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    IEnumerator SpawnPowerups()
+    {
+        float spawnRate;
+        while(isGameActive)
+        {
+            spawnRate = Random.Range(1.0f, 4.0f);
+            yield return new WaitForSeconds(spawnRate);
+            Instantiate(powerups[Random.Range(0, powerups.Count)]);
+        }
     }
 }

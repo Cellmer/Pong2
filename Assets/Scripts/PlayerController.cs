@@ -6,9 +6,11 @@ public class PlayerController : MonoBehaviour
 {
     private float verticalInput;
     private float horizontalInput;
-    private float speed = 5.0f;
-    private float rotateSpeed = 0.8f;
     private Rigidbody playerRb;
+
+    private float speed;
+    private float rotateSpeed;
+
 
     // Start is called before the first frame update
     void Start()
@@ -19,8 +21,11 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        speed = gameObject.GetComponent<Speed>().speed;
+        rotateSpeed = gameObject.GetComponent<Speed>().rotateSpeed;
         verticalInput = Input.GetAxis("Vertical");
         horizontalInput = Input.GetAxis("Horizontal");
+
         transform.Translate(Vector3.up * Time.deltaTime * speed * verticalInput, Space.World);
         transform.Rotate(Vector3.back, rotateSpeed * horizontalInput);
 

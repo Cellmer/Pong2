@@ -7,6 +7,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -7072759210774251021, guid: a0f2cec6a0c8f4b449da9fc4a72aa0f4, type: 3}
+      propertyPath: speed
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 639171480712896591, guid: a0f2cec6a0c8f4b449da9fc4a72aa0f4, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -55,6 +59,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerComputerMedium
       objectReference: {fileID: 0}
+    - target: {fileID: 5999347269648120165, guid: a0f2cec6a0c8f4b449da9fc4a72aa0f4, type: 3}
+      propertyPath: fastBallMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: eff9615c06284da438f474700326b126, type: 2}
+    - target: {fileID: 5999347269648120165, guid: a0f2cec6a0c8f4b449da9fc4a72aa0f4, type: 3}
+      propertyPath: standardMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: d1f13e593381cb74f9cc67e084b64c41, type: 2}
+    - target: {fileID: 5999347269648120165, guid: a0f2cec6a0c8f4b449da9fc4a72aa0f4, type: 3}
+      propertyPath: longPaddleMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: c18d9947cbe99654bbbfba12a77e7c7d, type: 2}
+    - target: {fileID: 5999347269648120165, guid: a0f2cec6a0c8f4b449da9fc4a72aa0f4, type: 3}
+      propertyPath: slowPaddleMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: b57e3060f308d534cb3a038205ffd58e, type: 2}
     m_RemovedComponents:
     - {fileID: 9076044741696741778, guid: a0f2cec6a0c8f4b449da9fc4a72aa0f4, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: a0f2cec6a0c8f4b449da9fc4a72aa0f4, type: 3}
@@ -75,3 +95,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b505c750d73511b42acfa1157b4171bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-181690469512382140
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9201363877489915555}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7472101daf9b2684e80c753c51d76b1f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 5
+  rotateSpeed: 0.8

@@ -1632,6 +1632,10 @@ MonoBehaviour:
   slowBallPrefab: {fileID: 3368686728024819447, guid: 40beb3712c8e76247847e49f2d7a236c, type: 3}
   fastBallPrefab: {fileID: 6740950458752954853, guid: 81c69116cced2434b86f3ccc596b9d80, type: 3}
   superFastBallPrefab: {fileID: 2876452022820326467, guid: c039123ec2830ed4f97bf1214118c93f, type: 3}
+  powerups:
+  - {fileID: 7338231884572062447, guid: 96c38fe824638ca4d89b68aa41c83417, type: 3}
+  - {fileID: 1064064017131310392, guid: 18d29ab9225662a4697c0491c4663206, type: 3}
+  - {fileID: 5342079052253896100, guid: 2b1ef9e9a5ae5094f932fd8390061912, type: 3}
 --- !u!4 &557654913
 Transform:
   m_ObjectHideFlags: 0

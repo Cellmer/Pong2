@@ -7,6 +7,11 @@ TagManager:
   - ball
   - right bound
   - left bound
+  - powerup fast ball
+  - powerup long paddle
+  - powerup slow paddle
+  - right paddle
+  - left paddle
   layers:
   - Default
   - TransparentFX

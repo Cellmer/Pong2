@@ -21,8 +21,8 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        speed = gameObject.GetComponent<Speed>().speed;
-        rotateSpeed = gameObject.GetComponent<Speed>().rotateSpeed;
+        speed = gameObject.GetComponent<Speed>().MovingSpeed;
+        rotateSpeed = gameObject.GetComponent<Speed>().RotateSpeed;
         verticalInput = Input.GetAxis("Vertical");
         horizontalInput = Input.GetAxis("Horizontal");
 

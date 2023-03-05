@@ -141,7 +141,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7472101daf9b2684e80c753c51d76b1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2
+  movingSpeed: 3
   rotateSpeed: 0.1
 --- !u!114 &5999347269648120165
 MonoBehaviour:
@@ -155,9 +155,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d0575678ccb76c4cb2bc1b4b2550f10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hasFastBallPowerup: 0
-  hasLongPaddlePowerup: 0
-  hasSlowPaddlePowerup: 0
   standardMaterial: {fileID: 2100000, guid: d1f13e593381cb74f9cc67e084b64c41, type: 2}
   fastBallMaterial: {fileID: 2100000, guid: eff9615c06284da438f474700326b126, type: 2}
   longPaddleMaterial: {fileID: 2100000, guid: c18d9947cbe99654bbbfba12a77e7c7d, type: 2}

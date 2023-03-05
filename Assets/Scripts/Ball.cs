@@ -6,21 +6,28 @@ public class Ball : MonoBehaviour
 {
     [SerializeField]
     private float speed;
+
+    [SerializeField]
+    private Material standardMaterial;
+
+    [SerializeField]
+    private Material powerupMaterial;
+
     private Rigidbody ballRb;
     private GameManager gameManager;
     private bool hasPowerup = false;
-
-    public Material standardMaterial;
-    public Material powerupMaterial;
+    private float speedIncreaseFactor;
+    private float powerupDuration;
 
     // Start is called before the first frame update
     void Start()
     {
+        speedIncreaseFactor = 2.0f;
+        powerupDuration = 10.0f;
         ballRb = GetComponent<Rigidbody>();
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
 
-        System.Random random = new System.Random();
-        ballRb.AddForce(new Vector3(2 * Random.Range(0, 2) - 1, ((float)random.NextDouble() - 0.5f) * 4) * speed, ForceMode.Impulse);
+        ballRb.AddForce(RandomDirection() * speed, ForceMode.Impulse);
     }
 
     // Update is called once per frame
@@ -28,6 +35,12 @@ public class Ball : MonoBehaviour
     {
         // maintain constant velocity
         ballRb.velocity = speed * (ballRb.velocity.normalized);
+    }
+
+    Vector3 RandomDirection()
+    {
+        System.Random random = new System.Random();
+        return new Vector3(2 * Random.Range(0, 2) - 1, ((float)random.NextDouble() - 0.5f) * 4).normalized;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -51,7 +64,7 @@ public class Ball : MonoBehaviour
 
         if(collision.gameObject.CompareTag("left paddle") || collision.gameObject.CompareTag("right paddle"))
         {
-            if(collision.gameObject.GetComponent<PowerupsHandler>().hasFastBallPowerup)
+            if(collision.gameObject.GetComponent<PowerupsHandler>().HasFastBallPowerup)
             {
                 StartCoroutine(ApplyPowerup());
             }
@@ -61,11 +74,11 @@ public class Ball : MonoBehaviour
     IEnumerator ApplyPowerup()
     {
         hasPowerup = true;
-        speed *= 2.0f;
+        speed *= speedIncreaseFactor;
         gameObject.GetComponent<MeshRenderer>().material = powerupMaterial;
-        yield return new WaitForSeconds(10.0f);
+        yield return new WaitForSeconds(powerupDuration);
 
-        speed /= 2.0f;
+        speed /= speedIncreaseFactor;
         gameObject.GetComponent<MeshRenderer>().material = standardMaterial;
         hasPowerup = false;
     }

@@ -12,6 +12,10 @@ PrefabInstance:
       value: 7
       objectReference: {fileID: 0}
     - target: {fileID: -7072759210774251021, guid: a0f2cec6a0c8f4b449da9fc4a72aa0f4, type: 3}
+      propertyPath: movingSpeed
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: -7072759210774251021, guid: a0f2cec6a0c8f4b449da9fc4a72aa0f4, type: 3}
       propertyPath: rotateSpeed
       value: 0.6
       objectReference: {fileID: 0}
@@ -87,20 +91,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 856200087925413459, guid: a0f2cec6a0c8f4b449da9fc4a72aa0f4, type: 3}
   m_PrefabInstance: {fileID: 3987901774385199368}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &-2406220639262632659
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4374696154279112539}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7472101daf9b2684e80c753c51d76b1f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 5
-  rotateSpeed: 0.8
 --- !u!114 &4262317185711088038
 MonoBehaviour:
   m_ObjectHideFlags: 0

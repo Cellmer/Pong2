@@ -4,8 +4,21 @@ using UnityEngine;
 
 public class Speed : MonoBehaviour
 {
-    public float speed = 5.0f;
-    public float rotateSpeed = 0.8f;
+    [SerializeField]
+    private float movingSpeed;
+    public float MovingSpeed
+    { 
+        get { return movingSpeed; } 
+        set { movingSpeed = value; } 
+    }
+
+    [SerializeField]
+    private float rotateSpeed;
+    public float RotateSpeed
+    {
+        get { return rotateSpeed; }
+        set { rotateSpeed = value; }
+    }
 
     // Start is called before the first frame update
     void Start()

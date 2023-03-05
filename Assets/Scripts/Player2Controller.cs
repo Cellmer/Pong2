@@ -20,8 +20,8 @@ public class Player2Controller : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        speed = gameObject.GetComponent<Speed>().speed;
-        rotateSpeed = gameObject.GetComponent<Speed>().rotateSpeed;
+        speed = gameObject.GetComponent<Speed>().MovingSpeed;
+        rotateSpeed = gameObject.GetComponent<Speed>().RotateSpeed;
         verticalInput = Input.GetAxis("Vertical2");
         horizontalInput = Input.GetAxis("Horizontal2");
         transform.Translate(Vector3.up * Time.deltaTime * speed * verticalInput, Space.World);

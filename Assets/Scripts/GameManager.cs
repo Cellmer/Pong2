@@ -6,31 +6,65 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    public GameObject titleScreen;
-    public GameObject difficultiesScreen;
-    public GameObject ballSpeedScreen;
-    public GameObject gameOverScreen;
-    public TextMeshProUGUI leftPlayerScoreText;
-    public TextMeshProUGUI rightPlayerScoreText;
-    public TextMeshProUGUI gameOverText;
-    public TextMeshProUGUI beforeThrowTimer;
+    // menu elements
+    [SerializeField]
+    private GameObject titleScreen;
 
-    public GameObject player1PaddlePrefab;
-    public GameObject player2PaddlePrefab;
-    public GameObject computerEasyPaddlePrefab;
-    public GameObject computerMediumPaddlePrefab;
-    public GameObject computerHardPaddlePrefab;
-    public GameObject ballPrefab;
-    public GameObject slowBallPrefab;
-    public GameObject fastBallPrefab;
-    public GameObject superFastBallPrefab;
-    public List<GameObject> powerups;
+    [SerializeField]
+    private GameObject difficultiesScreen;
+
+    [SerializeField]
+    private GameObject ballSpeedScreen;
+
+    [SerializeField]
+    private GameObject gameOverScreen;
+
+    [SerializeField]
+    private TextMeshProUGUI leftPlayerScoreText;
+
+    [SerializeField]
+    private TextMeshProUGUI rightPlayerScoreText;
+
+    [SerializeField]
+    private TextMeshProUGUI gameOverText;
+
+    [SerializeField]
+    private TextMeshProUGUI beforeThrowTimer;
+
+    // prefabs
+    [SerializeField]
+    private GameObject player1PaddlePrefab;
+
+    [SerializeField]
+    private GameObject player2PaddlePrefab;
+
+    [SerializeField]
+    private GameObject computerEasyPaddlePrefab;
+
+    [SerializeField]
+    private GameObject computerMediumPaddlePrefab;
+
+    [SerializeField]
+    private GameObject computerHardPaddlePrefab;
+
+    [SerializeField]
+    private GameObject ballPrefab;
+
+    [SerializeField]
+    private GameObject slowBallPrefab;
+
+    [SerializeField]
+    private GameObject fastBallPrefab;
+
+    [SerializeField]
+    private List<GameObject> powerups;
 
     private int difficulty;
     private bool singleplayer;
     private int leftPlayerScore;
     private int rightPlayerScore;
     private bool isGameActive;
+    private float gameDuration;
 
     // Start is called before the first frame update
     void Start()
@@ -45,6 +79,7 @@ public class GameManager : MonoBehaviour
         beforeThrowTimer.text = "";
 
         isGameActive = false;
+        gameDuration = 100.0f;
     }
 
     // Update is called once per frame
@@ -75,7 +110,7 @@ public class GameManager : MonoBehaviour
         rightPlayerScore = 0;
         leftPlayerScoreText.text = leftPlayerScore.ToString(); 
         rightPlayerScoreText.text = rightPlayerScore.ToString();
-        GameObject.Find("Timer").GetComponent<Timer>().SetTimer(100);
+        GameObject.Find("Timer").GetComponent<Timer>().SetTimer(gameDuration);
 
 
         if(singleplayer)
@@ -88,16 +123,15 @@ public class GameManager : MonoBehaviour
                 Instantiate(computerMediumPaddlePrefab);
             else
                 Instantiate(computerHardPaddlePrefab);
-            StartCoroutine(ThrowBall(null));
         }
         else
         {
             ballSpeedScreen.SetActive(false);
             Instantiate(player1PaddlePrefab);
             Instantiate(player2PaddlePrefab);
-            StartCoroutine(ThrowBall(null));
         }
 
+        StartCoroutine(ThrowBall(null));
         StartCoroutine(SpawnPowerups());
     }
 
@@ -182,7 +216,7 @@ public class GameManager : MonoBehaviour
         float spawnRate;
         while(isGameActive)
         {
-            spawnRate = Random.Range(1.0f, 4.0f);
+            spawnRate = Random.Range(2.0f, 8.0f);
             yield return new WaitForSeconds(spawnRate);
             Instantiate(powerups[Random.Range(0, powerups.Count)]);
         }

@@ -4,14 +4,26 @@ using UnityEngine;
 
 public class PowerupsHandler : MonoBehaviour
 {
-    public bool hasFastBallPowerup = false;
-    public bool hasLongPaddlePowerup = false;
-    public bool hasSlowPaddlePowerup = false;
+    public bool HasFastBallPowerup { get; set; }
+    public bool HasLongPaddlePowerup { get; set; }
+    public bool HasSlowPaddlePowerup { get; set; }
 
-    public Material standardMaterial;
-    public Material fastBallMaterial;
-    public Material longPaddleMaterial;
-    public Material slowPaddleMaterial;
+    private float paddleScalingFactor = 2.0f;
+    private float paddleSlowingFactor = 2.0f;
+    private float powerupDuration = 10.0f;
+
+    // materials
+    [SerializeField]
+    private Material standardMaterial;
+
+    [SerializeField]
+    private Material fastBallMaterial;
+
+    [SerializeField]
+    private Material longPaddleMaterial;
+
+    [SerializeField]
+    private Material slowPaddleMaterial;
 
     // Start is called before the first frame update
     void Start()
@@ -25,97 +37,98 @@ public class PowerupsHandler : MonoBehaviour
         
     }
 
+    // on collision with powerup
     private void OnTriggerEnter(Collider other)
     {
-        if ((other.gameObject.GetComponent<Powerup>().from_the_left && gameObject.CompareTag("left paddle")) ||
-            (!other.gameObject.GetComponent<Powerup>().from_the_left && gameObject.CompareTag("right paddle")))
+        if ((other.gameObject.GetComponent<Powerup>().From_the_left && gameObject.CompareTag("left paddle")) ||
+            (!other.gameObject.GetComponent<Powerup>().From_the_left && gameObject.CompareTag("right paddle")))
             return;
 
-        if (other.CompareTag("powerup fast ball") && !hasFastBallPowerup)
+        if (other.CompareTag("powerup fast ball") && !HasFastBallPowerup)
         {
-            StartCoroutine(SpawnFastBallPaddle());
+            StartCoroutine(ApplyFastBallPaddlePowerup());
             Destroy(other.gameObject);
         }
-        else if (other.CompareTag("powerup long paddle") && !hasLongPaddlePowerup)
+        else if (other.CompareTag("powerup long paddle") && !HasLongPaddlePowerup)
         {
-            StartCoroutine(SpawnLongPaddle());
+            StartCoroutine(ApplyLongPaddlePowerup());
             Destroy(other.gameObject);
         }
-        else if (other.CompareTag("powerup slow paddle") && !hasSlowPaddlePowerup)
+        else if (other.CompareTag("powerup slow paddle") && !HasSlowPaddlePowerup)
         {
-            StartCoroutine(SpawnSlowPaddle());
+            StartCoroutine(ApplySlowPaddlePowerup());
             Destroy(other.gameObject);
         }
     }
 
-    IEnumerator SpawnFastBallPaddle()
+    IEnumerator ApplyFastBallPaddlePowerup()
     {
-        if (hasLongPaddlePowerup)
+        if (HasLongPaddlePowerup)
         {
-            gameObject.transform.localScale -= Vector3.up * 2;
-            hasLongPaddlePowerup = false;
+            gameObject.transform.localScale -= Vector3.up * paddleScalingFactor;
+            HasLongPaddlePowerup = false;
         }
-        if (hasSlowPaddlePowerup)
+        if (HasSlowPaddlePowerup)
         {
-            gameObject.GetComponent<Speed>().speed *= 2.0f;
-            hasSlowPaddlePowerup = false;
+            gameObject.GetComponent<Speed>().MovingSpeed *= paddleSlowingFactor;
+            HasSlowPaddlePowerup = false;
         }
 
         gameObject.GetComponent<MeshRenderer>().material = fastBallMaterial;
-        hasFastBallPowerup = true;
+        HasFastBallPowerup = true;
 
-        yield return new WaitForSeconds(10.0f);
+        yield return new WaitForSeconds(powerupDuration);
 
-        if (hasFastBallPowerup)
+        if (HasFastBallPowerup)
         {
             gameObject.GetComponent<MeshRenderer>().material = standardMaterial;
-            hasFastBallPowerup = false;
+            HasFastBallPowerup = false;
         }
     }
 
-    IEnumerator SpawnLongPaddle()
+    IEnumerator ApplyLongPaddlePowerup()
     {
-        hasFastBallPowerup = false;
-        if (hasSlowPaddlePowerup)
+        HasFastBallPowerup = false;
+        if (HasSlowPaddlePowerup)
         {
-            gameObject.GetComponent<Speed>().speed *= 2.0f;
-            hasSlowPaddlePowerup = false;
+            gameObject.GetComponent<Speed>().MovingSpeed *= paddleSlowingFactor;
+            HasSlowPaddlePowerup = false;
         }
 
         gameObject.GetComponent<MeshRenderer>().material = longPaddleMaterial;
-        gameObject.transform.localScale += Vector3.up * 2;
-        hasLongPaddlePowerup = true;
+        gameObject.transform.localScale += Vector3.up * paddleScalingFactor;
+        HasLongPaddlePowerup = true;
 
-        yield return new WaitForSeconds(10.0f);
+        yield return new WaitForSeconds(powerupDuration);
 
-        if (hasLongPaddlePowerup)
+        if (HasLongPaddlePowerup)
         {
             gameObject.GetComponent<MeshRenderer>().material = standardMaterial;
-            gameObject.transform.localScale -= Vector3.up * 2;
-            hasLongPaddlePowerup = false;
+            gameObject.transform.localScale -= Vector3.up * paddleScalingFactor;
+            HasLongPaddlePowerup = false;
         }
     }
 
-    IEnumerator SpawnSlowPaddle()
+    IEnumerator ApplySlowPaddlePowerup()
     {
-        if (hasLongPaddlePowerup)
+        if (HasLongPaddlePowerup)
         {
-            gameObject.transform.localScale -= Vector3.up * 2;
-            hasLongPaddlePowerup = false;
+            gameObject.transform.localScale -= Vector3.up * paddleScalingFactor;
+            HasLongPaddlePowerup = false;
         }
-        hasFastBallPowerup = false;
+        HasFastBallPowerup = false;
 
         gameObject.GetComponent<MeshRenderer>().material = slowPaddleMaterial;
-        gameObject.GetComponent<Speed>().speed /= 2.0f;
-        hasSlowPaddlePowerup = true;
+        gameObject.GetComponent<Speed>().MovingSpeed /= paddleSlowingFactor;
+        HasSlowPaddlePowerup = true;
 
-        yield return new WaitForSeconds(10.0f);
+        yield return new WaitForSeconds(powerupDuration);
 
-        if (hasSlowPaddlePowerup)
+        if (HasSlowPaddlePowerup)
         {
             gameObject.GetComponent<MeshRenderer>().material = standardMaterial;
-            gameObject.GetComponent<Speed>().speed *= 2.0f;
-            hasSlowPaddlePowerup = false;
+            gameObject.GetComponent<Speed>().MovingSpeed *= paddleSlowingFactor;
+            HasSlowPaddlePowerup = false;
         }
     }
 }
